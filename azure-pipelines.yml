@@ -18,10 +18,8 @@ variables:
   environmentName: 'helloworld-nodejs-17020'
 
   # Agent VM image name
-pool:
-  name: Default
-  demands:
-    - agent.name -equals ADO
+  vmImageName: 'Default'
+  
 
 stages:
 - stage: Build
@@ -30,7 +28,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: $(pool)
+      vmImage: $(vmImageName)
 
     steps:
     - task: NodeTool@0
@@ -65,7 +63,7 @@ stages:
     displayName: Deploy
     environment: $(environmentName)
     pool:
-      vmImage: $(pool)
+      vmImage: $(vmImageName)
     strategy:
       runOnce:
         deploy:
