@@ -18,7 +18,10 @@ variables:
   environmentName: 'helloworld-nodejs-17020'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+pool:
+  name: Default
+  demands:
+    - agent.name -equals ADO
 
 stages:
 - stage: Build
